@@ -5,6 +5,8 @@ mongoose.connect("mongodb://localhost/workout", {
   useNewUrlParser: true,
 });
 
+
+
 let workoutSeed = [
   {
     day: new Date().setDate(new Date().getDate()-10),
@@ -123,8 +125,8 @@ let workoutSeed = [
   }
 ];
 
-db.Workouts.deleteMany({})
-  .then(() => db.Workouts.collection.insertMany(workoutSeed))
+db.Workout.deleteMany({})
+  .then(() => db.Workout.collection.insertMany(workoutSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);
