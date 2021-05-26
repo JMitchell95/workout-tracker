@@ -1,6 +1,7 @@
 const express = require ("express");
 const mongoose = require("mongoose");
-const Workout = require("./models/workouts.js");
+const db = require("./models");
+const path = require("path")
 
 const port = process.env.port || 27017;
 
@@ -8,24 +9,20 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true}));
 app.use (express.json());
-
 app.use(express.static("public)"));
+
 
 mongoose.connect(process.env.MONGODB_URI  || "mongodb://localhost/workout" ,{
     useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
     useFindAndModify: false
 });
 
- Workout.create({})
-  .then(dbWorkout => {
-    console.log(dbWorkout);
-  })
-  .catch(({message}) => {
-    console.log(message);
-  });
+require ("./routes/api")(app);
+require("./routes/html")(app);
 
 
-app.use(require("./routes/api.js"));
 app.listen(port, () => {
     console.log(`WE ARE LIVE AND ALIVE ${port}`);
 });
