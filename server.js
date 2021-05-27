@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const db = require("./models");
 const path = require("path")
 
-const port = process.env.port || 3000;
 
 const app = express();
 
@@ -23,6 +22,6 @@ require ("./routes/api")(app);
 require("./routes/html")(app);
 
 
-app.listen(port, () => {
-    console.log(`WE ARE LIVE AND ALIVE ${port}`);
+app.listen(process.env.port || 3000, () => {
+    console.log(`WE ARE LIVE AND ALIVE`);
 });
