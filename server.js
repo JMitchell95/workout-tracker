@@ -5,6 +5,7 @@ const path = require("path")
 
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true}));
 app.use (express.json());
@@ -22,6 +23,6 @@ require ("./routes/api")(app);
 require("./routes/html")(app);
 
 
-app.listen(process.env.port || 3000, () => {
-    console.log(`WE ARE LIVE AND ALIVE`);
+app.listen(port, () => {
+    console.log(`WE ARE LIVE AND ALIVE ${port}`);
 });
